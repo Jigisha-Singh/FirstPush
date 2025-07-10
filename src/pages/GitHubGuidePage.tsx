@@ -283,6 +283,208 @@ ${profileData.website ? `🌐 **Website:** ${profileData.website}` : ''}
           </Button>
         </div>
       )
+    },
+    {
+      id: 7,
+      title: "GitHub Terms & Commands Glossary",
+      description: "Master the essential GitHub vocabulary and commands you'll use daily.",
+      content: (
+        <div className="space-y-6">
+          <div className="bg-blue-50 p-4 rounded-lg">
+            <h4 className="font-semibold text-blue-900 mb-2">💡 Pro Tip:</h4>
+            <p className="text-blue-800 text-sm">
+              Bookmark this section! You'll refer back to these terms and commands throughout your GitHub journey.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Repository Terms */}
+            <div className="space-y-4">
+              <h4 className="font-bold text-lg text-gray-900 border-b pb-2">📁 Repository Terms</h4>
+              
+              <div className="space-y-3">
+                <div className="bg-white p-3 rounded-lg border">
+                  <h5 className="font-semibold text-gray-900">Repository (Repo)</h5>
+                  <p className="text-sm text-gray-600 mb-2">A folder that contains your project files and Git history</p>
+                  <div className="bg-gray-100 p-2 rounded text-xs font-mono">
+                    git clone https://github.com/username/repo-name.git
+                  </div>
+                </div>
+
+                <div className="bg-white p-3 rounded-lg border">
+                  <h5 className="font-semibold text-gray-900">Fork</h5>
+                  <p className="text-sm text-gray-600 mb-2">Create your own copy of someone else's repository</p>
+                  <div className="bg-gray-100 p-2 rounded text-xs font-mono">
+                    # Click "Fork" button on GitHub website
+                  </div>
+                </div>
+
+                <div className="bg-white p-3 rounded-lg border">
+                  <h5 className="font-semibold text-gray-900">Clone</h5>
+                  <p className="text-sm text-gray-600 mb-2">Download a repository to your local computer</p>
+                  <div className="bg-gray-100 p-2 rounded text-xs font-mono">
+                    git clone https://github.com/username/repo-name.git
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Git Commands */}
+            <div className="space-y-4">
+              <h4 className="font-bold text-lg text-gray-900 border-b pb-2">⚡ Essential Git Commands</h4>
+              
+              <div className="space-y-3">
+                <div className="bg-white p-3 rounded-lg border">
+                  <h5 className="font-semibold text-gray-900">Add</h5>
+                  <p className="text-sm text-gray-600 mb-2">Stage files for commit</p>
+                  <div className="bg-gray-100 p-2 rounded text-xs font-mono">
+                    git add filename.js<br/>
+                    git add . # Add all files
+                  </div>
+                </div>
+
+                <div className="bg-white p-3 rounded-lg border">
+                  <h5 className="font-semibold text-gray-900">Commit</h5>
+                  <p className="text-sm text-gray-600 mb-2">Save your changes with a message</p>
+                  <div className="bg-gray-100 p-2 rounded text-xs font-mono">
+                    git commit -m "Add new feature"
+                  </div>
+                </div>
+
+                <div className="bg-white p-3 rounded-lg border">
+                  <h5 className="font-semibold text-gray-900">Push</h5>
+                  <p className="text-sm text-gray-600 mb-2">Upload your commits to GitHub</p>
+                  <div className="bg-gray-100 p-2 rounded text-xs font-mono">
+                    git push origin main
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Branching Terms */}
+            <div className="space-y-4">
+              <h4 className="font-bold text-lg text-gray-900 border-b pb-2">🌿 Branching & Merging</h4>
+              
+              <div className="space-y-3">
+                <div className="bg-white p-3 rounded-lg border">
+                  <h5 className="font-semibold text-gray-900">Branch</h5>
+                  <p className="text-sm text-gray-600 mb-2">A separate line of development</p>
+                  <div className="bg-gray-100 p-2 rounded text-xs font-mono">
+                    git branch feature-name<br/>
+                    git checkout feature-name
+                  </div>
+                </div>
+
+                <div className="bg-white p-3 rounded-lg border">
+                  <h5 className="font-semibold text-gray-900">Merge</h5>
+                  <p className="text-sm text-gray-600 mb-2">Combine changes from different branches</p>
+                  <div className="bg-gray-100 p-2 rounded text-xs font-mono">
+                    git merge feature-name
+                  </div>
+                </div>
+
+                <div className="bg-white p-3 rounded-lg border">
+                  <h5 className="font-semibold text-gray-900">Pull Request (PR)</h5>
+                  <p className="text-sm text-gray-600 mb-2">Request to merge your changes into main branch</p>
+                  <div className="bg-gray-100 p-2 rounded text-xs font-mono">
+                    # Create on GitHub website
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Sync & Update Terms */}
+            <div className="space-y-4">
+              <h4 className="font-bold text-lg text-gray-900 border-b pb-2">🔄 Sync & Update</h4>
+              
+              <div className="space-y-3">
+                <div className="bg-white p-3 rounded-lg border">
+                  <h5 className="font-semibold text-gray-900">Fetch</h5>
+                  <p className="text-sm text-gray-600 mb-2">Download changes from remote without merging</p>
+                  <div className="bg-gray-100 p-2 rounded text-xs font-mono">
+                    git fetch origin
+                  </div>
+                </div>
+
+                <div className="bg-white p-3 rounded-lg border">
+                  <h5 className="font-semibold text-gray-900">Pull</h5>
+                  <p className="text-sm text-gray-600 mb-2">Download and merge changes from remote</p>
+                  <div className="bg-gray-100 p-2 rounded text-xs font-mono">
+                    git pull origin main
+                  </div>
+                </div>
+
+                <div className="bg-white p-3 rounded-lg border">
+                  <h5 className="font-semibold text-gray-900">Sync</h5>
+                  <p className="text-sm text-gray-600 mb-2">Keep your local repo up to date with remote</p>
+                  <div className="bg-gray-100 p-2 rounded text-xs font-mono">
+                    git pull origin main<br/>
+                    git push origin main
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Common Workflows */}
+          <div className="space-y-4">
+            <h4 className="font-bold text-lg text-gray-900 border-b pb-2">🛠️ Common Workflows</h4>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="bg-green-50 p-4 rounded-lg">
+                <h5 className="font-semibold text-green-900 mb-2">Daily Workflow</h5>
+                <div className="space-y-2 text-sm">
+                  <div className="bg-white p-2 rounded font-mono text-xs">
+                    git pull origin main
+                  </div>
+                  <div className="bg-white p-2 rounded font-mono text-xs">
+                    # Make your changes
+                  </div>
+                  <div className="bg-white p-2 rounded font-mono text-xs">
+                    git add .
+                  </div>
+                  <div className="bg-white p-2 rounded font-mono text-xs">
+                    git commit -m "Your message"
+                  </div>
+                  <div className="bg-white p-2 rounded font-mono text-xs">
+                    git push origin main
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-blue-50 p-4 rounded-lg">
+                <h5 className="font-semibold text-blue-900 mb-2">Feature Branch Workflow</h5>
+                <div className="space-y-2 text-sm">
+                  <div className="bg-white p-2 rounded font-mono text-xs">
+                    git checkout -b feature-name
+                  </div>
+                  <div className="bg-white p-2 rounded font-mono text-xs">
+                    # Make your changes
+                  </div>
+                  <div className="bg-white p-2 rounded font-mono text-xs">
+                    git add . && git commit -m "Add feature"
+                  </div>
+                  <div className="bg-white p-2 rounded font-mono text-xs">
+                    git push origin feature-name
+                  </div>
+                  <div className="bg-white p-2 rounded font-mono text-xs">
+                    # Create PR on GitHub
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <Button 
+            onClick={() => copyToClipboard(`# Essential Git Commands\n\ngit clone https://github.com/username/repo-name.git\ngit add .\ngit commit -m "Your message"\ngit push origin main\ngit pull origin main\ngit branch feature-name\ngit checkout feature-name\ngit merge feature-name\ngit fetch origin`)}
+            variant="outline"
+            className="w-full"
+          >
+            <Copy className="mr-2 h-4 w-4" />
+            Copy All Commands
+          </Button>
+        </div>
+      )
     }
   ];
 
