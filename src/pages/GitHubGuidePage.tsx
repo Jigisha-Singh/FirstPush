@@ -445,15 +445,6 @@ ${profileData.website ? `🌐 **Website:** ${profileData.website}` : ''}
               </div>
             </div>
           </div>
-
-          <Button 
-            onClick={() => copyToClipboard(`# Essential Git Commands\n\ngit clone https://github.com/username/repo-name.git\ngit add .\ngit commit -m "Your message"\ngit push origin main\ngit pull origin main\ngit branch feature-name\ngit checkout feature-name\ngit merge feature-name\ngit fetch origin`)}
-            variant="outline"
-            className="w-full"
-          >
-            <Copy className="mr-2 h-4 w-4" />
-            Copy All Commands
-          </Button>
         </div>
       )
     },
@@ -498,20 +489,6 @@ ${profileData.website ? `🌐 **Website:** ${profileData.website}` : ''}
             <div># See your config</div>
             <div>git config --list</div>
           </div>
-          <Button 
-            onClick={() => copyToClipboard(`git --version\ngit config --global user.name \"Your Name\"\ngit config --global user.email \"youremail@example.com\"\ngit config --list`)}
-            variant="outline"
-            className="w-full"
-          >
-            <Copy className="mr-2 h-4 w-4" />
-            Copy Git Setup Commands
-          </Button>
-          <div className="bg-amber-50 p-4 rounded-lg">
-            <h4 className="font-semibold text-amber-900 mb-2">Pro Tip:</h4>
-            <p className="text-amber-800 text-sm">
-              If you ever change computers, repeat these steps to set up Git again. You only need to configure your name and email once per computer.
-            </p>
-          </div>
         </div>
       )
     },
@@ -533,14 +510,6 @@ ${profileData.website ? `🌐 **Website:** ${profileData.website}` : ''}
             <div># Push to GitHub</div>
             <div>git push origin main</div>
           </div>
-          <Button 
-            onClick={() => copyToClipboard(`git clone https://github.com/yourusername/your-repo.git\ncd your-repo\ngit add .\ngit commit -m "Initial commit: Add README"\ngit push origin main`)}
-            variant="outline"
-            className="w-full"
-          >
-            <Copy className="mr-2 h-4 w-4" />
-            Copy Git Commands
-          </Button>
         </div>
       )
     }
