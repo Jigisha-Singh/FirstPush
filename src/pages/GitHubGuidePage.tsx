@@ -485,6 +485,64 @@ ${profileData.website ? `🌐 **Website:** ${profileData.website}` : ''}
           </Button>
         </div>
       )
+    },
+    {
+      id: 8,
+      title: "Set Up Git Locally",
+      description: "Learn how to install and configure Git on your computer.",
+      content: (
+        <div className="space-y-4">
+          <div className="bg-blue-50 p-4 rounded-lg">
+            <h4 className="font-semibold text-blue-900 mb-2">Why Set Up Git?</h4>
+            <p className="text-blue-800 text-sm">
+              Setting up Git on your computer lets you track code changes, collaborate with others, and push your work to GitHub from your own machine.
+            </p>
+          </div>
+          <div className="bg-gray-50 p-4 rounded-lg">
+            <h4 className="font-semibold mb-2">Step-by-Step Setup:</h4>
+            <ol className="list-decimal list-inside space-y-2 text-gray-700">
+              <li>
+                <b>Download & Install Git:</b> <br/>
+                <a href="https://git-scm.com/downloads" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">git-scm.com/downloads</a> <br/>
+                Download the installer for your operating system and follow the prompts.
+              </li>
+              <li>
+                <b>Check Git Version:</b> <br/>
+                <span className="font-mono bg-gray-100 px-2 py-1 rounded">git --version</span> <br/>
+                This should print the installed version of Git.
+              </li>
+              <li>
+                <b>Configure Your Name & Email:</b> <br/>
+                Set your name and email so your commits are properly attributed.
+              </li>
+            </ol>
+          </div>
+          <div className="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+            <div className="mb-2"># Check Git version</div>
+            <div className="mb-2">git --version</div>
+            <div className="mb-2"># Set your name</div>
+            <div className="mb-2">git config --global user.name "Your Name"</div>
+            <div className="mb-2"># Set your email</div>
+            <div className="mb-2">git config --global user.email "youremail@example.com"</div>
+            <div># See your config</div>
+            <div>git config --list</div>
+          </div>
+          <Button 
+            onClick={() => copyToClipboard(`git --version\ngit config --global user.name \"Your Name\"\ngit config --global user.email \"youremail@example.com\"\ngit config --list`)}
+            variant="outline"
+            className="w-full"
+          >
+            <Copy className="mr-2 h-4 w-4" />
+            Copy Git Setup Commands
+          </Button>
+          <div className="bg-amber-50 p-4 rounded-lg">
+            <h4 className="font-semibold text-amber-900 mb-2">Pro Tip:</h4>
+            <p className="text-amber-800 text-sm">
+              If you ever change computers, repeat these steps to set up Git again. You only need to configure your name and email once per computer.
+            </p>
+          </div>
+        </div>
+      )
     }
   ];
 
