@@ -31,18 +31,8 @@ export const Footer = () => {
               Empowering the next generation of developers to take their first step into tech with confidence.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Github className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Mail className="h-5 w-5" />
-              </a>
+              <a href="https://github.com" className="mr-4 hover:text-white" aria-label="GitHub"><Github className="h-5 w-5" /></a>
+              <a href="mailto:firstpush.delta@gmail.com" className="hover:text-white" aria-label="Email"><Mail className='h-5 w-5' /></a>
             </div>
           </div>
 
@@ -101,18 +91,12 @@ export const Footer = () => {
 
         <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm">
-            © 2024 FirstPush. Made with <Heart className="inline h-4 w-4 text-red-500" /> for aspiring developers.
+            © 2025 FirstPush. Empowering your tech journey.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
-              Privacy Policy
-            </a>
-            <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
-              Terms of Service
-            </a>
-            <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
-              Contact
-            </a>
+            <Link to="/privacy-policy" className="hover:underline">Privacy Policy</Link>
+            <Link to="/terms" className="hover:underline">Terms & Conditions</Link>
+            <a href="mailto:firstpush.delta@gmail.com" className="hover:underline" aria-label="Contact Email">Contact</a>
           </div>
         </div>
       </div>
