@@ -113,12 +113,11 @@ export const Resources = () => {
                 })}
               </div>
               
-              <Link 
-                to={category.link}
-                className="w-full flex items-center justify-center px-4 py-2 bg-gradient-to-r from-gray-800 to-gray-900 text-white text-sm font-medium rounded-lg hover:from-gray-900 hover:to-black transition-all duration-200 group-hover:scale-[1.02]"
+              <Link
+                to="/coming-soon"
+                className="block w-full text-center bg-gray-900 text-white font-semibold py-3 rounded-lg hover:bg-gray-800 transition"
               >
-                Explore All
-                <ExternalLink className="ml-2 h-4 w-4" />
+                Explore All <span aria-hidden>↗</span>
               </Link>
             </div>
           ))}
