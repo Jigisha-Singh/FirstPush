@@ -39,9 +39,9 @@ export const About = () => {
           ].map((item, index) => (
             <div
               key={item.title}
-              className="bg-gray-50 rounded-2xl p-8 hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1"
+              className="bg-gray-50 rounded-2xl p-8 hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1 flex flex-col items-center justify-center text-center"
             >
-              <div className={`inline-flex p-3 rounded-lg bg-gradient-to-r ${item.gradient} mb-6`}>
+              <div className={`inline-flex p-3 rounded-lg bg-gradient-to-r ${item.gradient} mb-6 items-center justify-center`}>
                 <item.icon className="h-8 w-8 text-white" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">{item.title}</h3>
