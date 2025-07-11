@@ -459,35 +459,6 @@ ${profileData.website ? `🌐 **Website:** ${profileData.website}` : ''}
     },
     {
       id: 7,
-      title: "Make Your First Commit",
-      description: "Learn the Git workflow and make your first commit.",
-      content: (
-        <div className="space-y-4">
-          <div className="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
-            <div className="mb-2"># Clone your repository</div>
-            <div className="mb-2">git clone https://github.com/yourusername/your-repo.git</div>
-            <div className="mb-2"># Navigate to the directory</div>
-            <div className="mb-2">cd your-repo</div>
-            <div className="mb-2"># Make changes and add them</div>
-            <div className="mb-2">git add .</div>
-            <div className="mb-2"># Commit your changes</div>
-            <div className="mb-2">git commit -m "Initial commit: Add README"</div>
-            <div># Push to GitHub</div>
-            <div>git push origin main</div>
-          </div>
-          <Button 
-            onClick={() => copyToClipboard(`git clone https://github.com/yourusername/your-repo.git\ncd your-repo\ngit add .\ngit commit -m "Initial commit: Add README"\ngit push origin main`)}
-            variant="outline"
-            className="w-full"
-          >
-            <Copy className="mr-2 h-4 w-4" />
-            Copy Git Commands
-          </Button>
-        </div>
-      )
-    },
-    {
-      id: 8,
       title: "Set Up Git Locally",
       description: "Learn how to install and configure Git on your computer.",
       content: (
@@ -541,6 +512,35 @@ ${profileData.website ? `🌐 **Website:** ${profileData.website}` : ''}
               If you ever change computers, repeat these steps to set up Git again. You only need to configure your name and email once per computer.
             </p>
           </div>
+        </div>
+      )
+    },
+    {
+      id: 8,
+      title: "Make Your First Commit",
+      description: "Learn the Git workflow and make your first commit.",
+      content: (
+        <div className="space-y-4">
+          <div className="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm">
+            <div className="mb-2"># Clone your repository</div>
+            <div className="mb-2">git clone https://github.com/yourusername/your-repo.git</div>
+            <div className="mb-2"># Navigate to the directory</div>
+            <div className="mb-2">cd your-repo</div>
+            <div className="mb-2"># Make changes and add them</div>
+            <div className="mb-2">git add .</div>
+            <div className="mb-2"># Commit your changes</div>
+            <div className="mb-2">git commit -m "Initial commit: Add README"</div>
+            <div># Push to GitHub</div>
+            <div>git push origin main</div>
+          </div>
+          <Button 
+            onClick={() => copyToClipboard(`git clone https://github.com/yourusername/your-repo.git\ncd your-repo\ngit add .\ngit commit -m "Initial commit: Add README"\ngit push origin main`)}
+            variant="outline"
+            className="w-full"
+          >
+            <Copy className="mr-2 h-4 w-4" />
+            Copy Git Commands
+          </Button>
         </div>
       )
     }
