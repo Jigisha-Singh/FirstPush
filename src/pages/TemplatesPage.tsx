@@ -8,7 +8,7 @@ interface Template {
   id: string;
   title: string;
   description: string;
-  type: 'PDF Template' | 'Code Template' | 'README Template';
+  type: 'PDF Template' | 'Code Template' | 'README Template' | 'Checklist';
   downloads: number;
   rating: number;
   preview: string;
@@ -20,7 +20,7 @@ interface Template {
 
 const TemplatesPage = () => {
   const [copiedId, setCopiedId] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState<'templates' | 'readmes'>('templates');
+  const [activeTab, setActiveTab] = useState<'templates' | 'readmes' | 'linkedin'>('templates');
   const [previewModal, setPreviewModal] = useState<{ isOpen: boolean; template: Template | null }>({
     isOpen: false,
     template: null
@@ -265,16 +265,74 @@ Describe how to use your project.
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.`
+    },
+    {
+      id: 'linkedin-checklist',
+      title: 'LinkedIn Profile Optimization Checklist',
+      description: 'Step-by-step guide to optimize your LinkedIn profile for recruiters and networking.',
+      type: 'Checklist',
+      downloads: 1923,
+      rating: 4.8,
+      preview: '/api/placeholder/300/400',
+      features: [
+        'Profile Photo & Banner',
+        'Headline & Summary',
+        'Experience & Skills',
+        'Custom URL & Contact Info'
+      ],
+      category: 'resume',
+      content: `# LinkedIn Profile Optimization Checklist
+
+## Profile & Visuals
+- [ ] Use a professional profile photo
+- [ ] Add a custom banner image
+- [ ] Set your profile to public
+
+## Headline & Summary
+- [ ] Write a clear, keyword-rich headline
+- [ ] Craft a compelling summary (About section)
+- [ ] Highlight your unique value and career goals
+
+## Experience & Education
+- [ ] Add all relevant job experiences with descriptions
+- [ ] Use bullet points and quantify achievements
+- [ ] Include education details and certifications
+
+## Skills & Endorsements
+- [ ] List at least 5-10 relevant skills
+- [ ] Request endorsements from colleagues
+
+## Recommendations
+- [ ] Request recommendations from managers, peers, or clients
+- [ ] Give recommendations to others
+
+## Custom URL & Contact Info
+- [ ] Set a custom LinkedIn URL (e.g., linkedin.com/in/yourname)
+- [ ] Add up-to-date contact info (email, website, etc.)
+
+## Activity & Networking
+- [ ] Share or comment on industry-relevant posts
+- [ ] Connect with professionals in your field
+- [ ] Join relevant LinkedIn groups
+
+---
+
+**Tip:** Review your profile regularly and keep it updated with new skills, experiences, and achievements!`
     }
   ];
 
+  // Separate LinkedIn Checklist from main templates
+  const linkedInChecklist = templates.find(t => t.id === 'linkedin-checklist');
   const filteredTemplates = useMemo(() => {
     if (activeTab === 'templates') {
-      return templates.filter(t => t.category !== 'readme');
-    } else {
+      return templates.filter(t => t.category !== 'readme' && t.id !== 'linkedin-checklist');
+    } else if (activeTab === 'readmes') {
       return templates.filter(t => t.category === 'readme');
+    } else if (activeTab === 'linkedin') {
+      return linkedInChecklist ? [linkedInChecklist] : [];
     }
-  }, [activeTab]);
+    return [];
+  }, [activeTab, templates, linkedInChecklist]);
 
   const handleCopy = (content: string, id: string) => {
     navigator.clipboard.writeText(content);
@@ -304,6 +362,29 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
       .replace(/\*(.*?)\*/g, '<em>$1</em>');
 
     return { __html: highlighted };
+  };
+
+  // Helper to get file extension based on template type
+  const getFileExtension = (template: Template) => {
+    if (template.type === 'README Template') return 'md';
+    if (template.type === 'Code Template') return 'js';
+    if (template.type === 'Checklist') return 'md'; // Checklist is markdown
+    return 'txt';
+  };
+
+  // Download handler
+  const handleDownload = (template: Template) => {
+    const blob = new Blob([template.content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const ext = getFileExtension(template);
+    const filename = `${template.title.replace(/\s+/g, '_').toLowerCase()}.${ext}`;
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
   };
 
   return (
@@ -344,6 +425,17 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
                 <Code className="h-4 w-4 inline mr-2" />
                 GitHub README Templates
               </button>
+              <button
+                onClick={() => setActiveTab('linkedin')}
+                className={`py-2 px-1 border-b-2 font-medium text-sm ${
+                  activeTab === 'linkedin'
+                    ? 'border-blue-500 text-blue-600'
+                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                }`}
+              >
+                <ExternalLink className="h-4 w-4 inline mr-2" />
+                LinkedIn Checklist
+              </button>
             </nav>
           </div>
         </div>
@@ -360,6 +452,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
                   <span className={`px-3 py-1 rounded-full text-xs font-medium ${
                     template.type === 'PDF Template' ? 'bg-blue-100 text-blue-600' :
                     template.type === 'Code Template' ? 'bg-green-100 text-green-600' :
+                    template.type === 'Checklist' ? 'bg-purple-100 text-purple-600' :
                     'bg-purple-100 text-purple-600'
                   }`}>
                     {template.type}
@@ -421,7 +514,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
                 </div>
 
                 <div className="flex space-x-3">
-                  <button className="flex-1 flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+                  <button
+                    onClick={() => handleDownload(template)}
+                    className="flex-1 flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
                     <Download className="h-4 w-4 mr-2" />
                     Download
                   </button>
@@ -458,13 +553,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
             <div className="p-6 overflow-y-auto max-h-[calc(90vh-120px)]">
               {previewModal.template.type === 'PDF Template' && previewModal.template.htmlPreview ? (
                 <div 
-                  className="border rounded-lg overflow-hidden"
+                  className="border rounded-lg overflow-hidden bg-white text-gray-900"
                   dangerouslySetInnerHTML={{ __html: previewModal.template.htmlPreview }}
                 />
               ) : (
-                <div className="bg-gray-900 rounded-lg p-6">
+                <div className="bg-white rounded-lg p-6 border text-gray-900">
                   <div 
-                    className="prose prose-invert max-w-none"
+                    className="prose max-w-none"
                     dangerouslySetInnerHTML={renderSyntaxHighlightedContent(previewModal.template.content, 'markdown')}
                   />
                 </div>
@@ -477,19 +572,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
                   <span className="text-sm text-gray-600">
                     {previewModal.template.type} • {previewModal.template.downloads} downloads
                   </span>
-                </div>
-                <div className="flex space-x-3">
-                  <button
-                    onClick={() => handleCopy(previewModal.template!.content, previewModal.template!.id)}
-                    className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                  >
-                    <Copy className="h-4 w-4 mr-2" />
-                    Copy Template
-                  </button>
-                  <button className="flex items-center px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
-                    <Download className="h-4 w-4 mr-2" />
-                    Download
-                  </button>
                 </div>
               </div>
             </div>
