@@ -1,12 +1,14 @@
 
 import React, { useState, useEffect } from 'react';
 import { Menu, X, User, Settings } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [active, setActive] = useState('Home');
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,11 +18,16 @@ export const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsOpen(false);
+  const handleNavClick = (sectionId: string, name: string) => {
+    setActive(name);
+    setIsOpen(false);
+    if (location.pathname !== '/') {
+      navigate('/', { state: { scrollTo: sectionId } });
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -49,7 +56,7 @@ export const Navbar = () => {
               {navItems.map((item) => (
                 <button
                   key={item.name}
-                  onClick={() => { scrollToSection(item.id); setActive(item.name); }}
+                  onClick={() => handleNavClick(item.id, item.name)}
                   className={`relative px-3 py-2 text-base font-semibold rounded-lg transition-all duration-200
                     ${active === item.name ? 'text-blue-600' : 'text-gray-700'}
                     hover:text-blue-600
@@ -103,7 +110,7 @@ export const Navbar = () => {
             {navItems.map((item) => (
               <button
                 key={item.name}
-                onClick={() => { scrollToSection(item.id); setActive(item.name); }}
+                onClick={() => handleNavClick(item.id, item.name)}
                 className={`block w-full text-left px-3 py-2 text-base font-semibold rounded-lg transition-all duration-200
                   ${active === item.name ? 'text-blue-600 bg-blue-50' : 'text-gray-700'}
                   hover:text-blue-600 hover:bg-blue-50
