@@ -1,14 +1,23 @@
 
 import React from 'react';
 import { ArrowRight, Github, Linkedin, FileText, Globe } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export const Hero = () => {
+  const navigate = useNavigate();
   const scrollToGuides = () => {
     const element = document.getElementById('guides');
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+
+  const cardLinks = [
+    '/guides/github',
+    '/guides/linkedin',
+    '/guides/portfolio',
+    '/guides/resume',
+  ];
 
   return (
     <section id="hero" className="pt-16 pb-20 px-4 sm:px-6 lg:px-8">
@@ -52,7 +61,12 @@ export const Hero = () => {
             ].map((item, index) => (
               <div
                 key={item.label}
-                className="flex flex-col items-center p-4 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+                className="flex flex-col items-center p-4 bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 cursor-pointer"
+                onClick={() => navigate(cardLinks[index])}
+                tabIndex={0}
+                role="button"
+                onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') navigate(cardLinks[index]); }}
+                aria-label={item.label}
               >
                 <div className={`p-3 rounded-lg bg-gradient-to-r ${item.color} mb-3`}>
                   <item.icon className="h-6 w-6 text-white" />
