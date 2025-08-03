@@ -10,6 +10,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Checkbox } from '@/components/ui/checkbox';
 import { useToast } from '@/hooks/use-toast';
 import { Footer } from '@/components/Footer';
+import InteractiveTerminal from '@/components/InteractiveTerminal';
 
 const GitHubGuidePage = () => {
   const [completedSteps, setCompletedSteps] = useState<number[]>([]);
@@ -510,6 +511,30 @@ ${profileData.website ? `🌐 **Website:** ${profileData.website}` : ''}
             <div># Push to GitHub</div>
             <div>git push origin main</div>
           </div>
+          <Button 
+            onClick={() => copyToClipboard(`git clone https://github.com/yourusername/your-repo.git\ncd your-repo\ngit add .\ngit commit -m "Initial commit: Add README"\ngit push origin main`)}
+            variant="outline"
+            className="w-full"
+          >
+            <Copy className="mr-2 h-4 w-4" />
+            Copy Git Commands
+          </Button>
+        </div>
+      )
+    },
+    {
+      id: 9,
+      title: "Practice Git Commands",
+      description: "Try out Git commands in this interactive terminal simulation.",
+      content: (
+        <div className="space-y-4">
+          <div className="bg-blue-50 p-4 rounded-lg">
+            <h4 className="font-semibold text-blue-900 mb-2">💡 How to Use:</h4>
+            <p className="text-blue-800 text-sm">
+              Type Git commands below and press Enter to see the simulated output. Try commands like: git init, git status, git add, git commit, git log
+            </p>
+          </div>
+          <InteractiveTerminal />
         </div>
       )
     }
