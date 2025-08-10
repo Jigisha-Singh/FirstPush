@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import React from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Download, FileText, Code, ExternalLink, Star, GraduationCap, Briefcase, Users, Award, ArrowRight } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { Download, FileText, Edit, ArrowLeft, Star, Share2, Eye, Printer } from 'lucide-react';
 
 interface ResumeTemplate {
   id: string;
@@ -14,10 +13,12 @@ interface ResumeTemplate {
   icon: React.ReactNode;
   popular?: boolean;
   content: React.ReactNode;
+  tips: string[];
+  bestFor: string[];
 }
 
-const TemplatesPage: React.FC = () => {
-  const [activeTab, setActiveTab] = useState('all');
+const ResumeTemplateDetail: React.FC = () => {
+  const { templateId } = useParams();
   const navigate = useNavigate();
 
   const resumeTemplates: ResumeTemplate[] = [
@@ -27,7 +28,7 @@ const TemplatesPage: React.FC = () => {
       description: 'Perfect for internships, research roles, and academic applications',
       experienceLevel: 'Student',
       format: 'PDF',
-      icon: <GraduationCap className="w-5 h-5" />,
+      icon: '🎓',
       popular: true,
       content: (
         <div className="space-y-6 p-6 bg-white border rounded-lg">
@@ -95,7 +96,21 @@ const TemplatesPage: React.FC = () => {
             </ul>
           </div>
         </div>
-      )
+      ),
+      tips: [
+        'Focus on education and relevant coursework since work experience is limited',
+        'Include projects, research, and extracurricular activities to showcase skills',
+        'Highlight leadership roles and volunteer work to demonstrate initiative',
+        'Use action verbs and quantify achievements where possible',
+        'Keep it concise - aim for 1 page maximum'
+      ],
+      bestFor: [
+        'College students seeking internships',
+        'Graduate students applying for research positions',
+        'Recent graduates with limited work experience',
+        'Academic applications and scholarships',
+        'Part-time job applications'
+      ]
     },
     {
       id: 'entry-level-resume',
@@ -103,7 +118,7 @@ const TemplatesPage: React.FC = () => {
       description: 'Ideal for recent graduates applying for their first full-time role',
       experienceLevel: 'Entry-Level',
       format: 'PDF',
-      icon: <Briefcase className="w-5 h-5" />,
+      icon: '💼',
       content: (
         <div className="space-y-6 p-6 bg-white border rounded-lg">
           <div className="text-center border-b pb-4">
@@ -165,7 +180,21 @@ const TemplatesPage: React.FC = () => {
             </div>
           </div>
         </div>
-      )
+      ),
+      tips: [
+        'Balance education and internship experience',
+        'Emphasize transferable skills from part-time jobs and activities',
+        'Include relevant coursework if work experience is light',
+        'Use specific metrics and achievements to stand out',
+        'Tailor skills section to match job requirements'
+      ],
+      bestFor: [
+        'Recent graduates seeking first full-time position',
+        'Career changers with transferable skills',
+        'Individuals with internship experience',
+        'Entry-level positions in any industry',
+        'Graduate programs and training positions'
+      ]
     },
     {
       id: 'mid-level-resume',
@@ -173,7 +202,7 @@ const TemplatesPage: React.FC = () => {
       description: 'Perfect for professionals with 3-7 years of experience looking to advance',
       experienceLevel: 'Mid-Level',
       format: 'PDF',
-      icon: <Users className="w-5 h-5" />,
+      icon: '👥',
       content: (
         <div className="space-y-6 p-6 bg-white border rounded-lg">
           <div className="text-center border-b pb-4">
@@ -221,7 +250,21 @@ const TemplatesPage: React.FC = () => {
             <p className="text-gray-700">ATS (Workday, Greenhouse), Employee Relations, Performance Management</p>
           </div>
         </div>
-      )
+      ),
+      tips: [
+        'Prioritize work experience over education',
+        'Include quantifiable achievements and metrics',
+        'Highlight specialized skills and certifications',
+        'Show progression and growth in your career',
+        'Focus on leadership and project management experience'
+      ],
+      bestFor: [
+        'Professionals with 3-7 years of experience',
+        'Individuals seeking career advancement',
+        'Specialists looking to move into management',
+        'Career changers with relevant experience',
+        'Professionals seeking industry changes'
+      ]
     },
     {
       id: 'experienced-resume',
@@ -229,7 +272,7 @@ const TemplatesPage: React.FC = () => {
       description: 'Designed for senior managers, executives, and specialists with deep expertise',
       experienceLevel: 'Experienced',
       format: 'PDF',
-      icon: <Award className="w-5 h-5" />,
+      icon: '🏆',
       content: (
         <div className="space-y-6 p-6 bg-white border rounded-lg">
           <div className="text-center border-b pb-4">
@@ -273,182 +316,185 @@ const TemplatesPage: React.FC = () => {
             </ul>
           </div>
         </div>
-      )
+      ),
+      tips: [
+        'Lead with executive summary instead of objective',
+        'Focus on strategic impact and leadership achievements',
+        'Include only relevant early-career experience',
+        'Emphasize board positions and industry recognition',
+        'Show thought leadership and industry influence'
+      ],
+      bestFor: [
+        'Senior managers and executives',
+        'Industry specialists with deep expertise',
+        'Consultants and advisors',
+        'Board members and directors',
+        'Thought leaders and speakers'
+      ]
     }
   ];
 
-  const otherTemplates = [
-    {
-      id: 'portfolio-starter',
-      title: 'Portfolio Starter',
-      description: 'React portfolio boilerplate',
-      format: 'Code',
-      icon: <Code className="w-5 h-5" />
-    },
-    {
-      id: 'linkedin-checklist',
-      title: 'LinkedIn Checklist',
-      description: 'Profile optimization guide',
-      format: 'PDF',
-      icon: <FileText className="w-5 h-5" />
-    },
-    {
-      id: 'github-readme',
-      title: 'GitHub README Template',
-      description: 'Professional README template',
-      format: 'Markdown',
-      icon: <ExternalLink className="w-5 h-5" />
-    }
-  ];
+  const template = resumeTemplates.find(t => t.id === templateId);
 
-  const filteredTemplates = activeTab === 'all' 
-    ? resumeTemplates 
-    : resumeTemplates.filter(template => template.experienceLevel === activeTab);
-
-  const getFormatIcon = (format: string) => {
-    switch (format) {
-      case 'PDF':
-        return <FileText className="w-4 h-4" />;
-      case 'Code':
-        return <Code className="w-4 h-4" />;
-      case 'Markdown':
-        return <ExternalLink className="w-4 h-4" />;
-      default:
-        return <FileText className="w-4 h-4" />;
-    }
-  };
-
-  const handleTemplateClick = (templateId: string) => {
-    navigate(`/templates/${templateId}`);
-  };
+  if (!template) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">Template Not Found</h1>
+          <Button onClick={() => navigate('/resources/templates')}>
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Templates
+          </Button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Templates & Tools</h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Professional templates and resources to help you stand out in your career journey
-          </p>
-        </div>
-
-        {/* Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-8">
-          {['all', 'Student', 'Entry-Level', 'Mid-Level', 'Experienced'].map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`px-6 py-2 rounded-full font-medium transition-colors ${
-                activeTab === tab
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-200'
-              }`}
-            >
-              {tab === 'all' ? 'All Templates' : tab}
-            </button>
-          ))}
-        </div>
-
-        {/* Resume Templates Section */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-            <Download className="w-6 h-6 text-blue-600" />
-            Resume Templates
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredTemplates.map((template) => (
-              <Card 
-                key={template.id} 
-                className="cursor-pointer transition-all hover:shadow-lg hover:scale-105 group"
-                onClick={() => handleTemplateClick(template.id)}
-              >
-                <CardHeader className="pb-3">
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="p-2 bg-blue-100 rounded-lg text-blue-600 group-hover:bg-blue-200 transition-colors">
-                        {template.icon}
-                      </div>
-                      <div>
-                        <CardTitle className="text-lg flex items-center gap-2">
-                          {template.title}
-                          {template.popular && (
-                            <Badge variant="secondary" className="text-xs">
-                              <Star className="w-3 h-3 mr-1" />
-                              Popular
-                            </Badge>
-                          )}
-                        </CardTitle>
-                        <CardDescription className="text-sm mt-1">
-                          {template.description}
-                        </CardDescription>
-                      </div>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-0">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-sm text-gray-600">
-                      {getFormatIcon(template.format)}
-                      {template.format}
-                    </div>
-                    <Button size="sm" variant="outline" className="group-hover:bg-blue-50 group-hover:border-blue-200 group-hover:text-blue-600 transition-colors">
-                      Explore Template
-                      <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-
-        {/* Other Templates Section */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Other Resources</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {otherTemplates.map((template) => (
-              <Card key={template.id} className="cursor-pointer hover:shadow-lg transition-all">
-                <CardHeader className="pb-3">
-                  <div className="flex items-center gap-3">
-                    <div className="p-2 bg-gray-100 rounded-lg text-gray-600">
-                      {template.icon}
-                    </div>
-                    <div>
-                      <CardTitle className="text-lg">{template.title}</CardTitle>
-                      <CardDescription className="text-sm mt-1">
-                        {template.description}
-                      </CardDescription>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-0">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-sm text-gray-600">
-                      {getFormatIcon(template.format)}
-                      {template.format}
-                    </div>
-                    <Button size="sm" variant="outline">
-                      Get Template
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-
-        {/* CTA Section */}
-        <div className="text-center">
-          <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3">
-            Explore All Templates
-            <ExternalLink className="w-4 h-4 ml-2" />
+        <div className="mb-8">
+          <Button 
+            variant="ghost" 
+            onClick={() => navigate('/resources/templates')}
+            className="mb-4 hover:bg-gray-100"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Templates
           </Button>
+          
+          <div className="flex items-start justify-between">
+            <div className="flex-1">
+              <div className="flex items-center gap-3 mb-2">
+                <span className="text-4xl">{template.icon}</span>
+                <div>
+                  <h1 className="text-3xl font-bold text-gray-900">{template.title}</h1>
+                  {template.popular && (
+                    <Badge variant="secondary" className="mt-2">
+                      <Star className="w-3 h-3 mr-1" />
+                      Popular
+                    </Badge>
+                  )}
+                </div>
+              </div>
+              <p className="text-xl text-gray-600 mb-4">{template.description}</p>
+              
+              <div className="flex items-center gap-4 text-sm text-gray-600">
+                <span className="flex items-center gap-2">
+                  <FileText className="w-4 h-4" />
+                  {template.format} Format
+                </span>
+                <span className="flex items-center gap-2">
+                  <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                  {template.experienceLevel} Level
+                </span>
+              </div>
+            </div>
+            
+            <div className="flex gap-3">
+              <Button variant="outline">
+                <Eye className="w-4 h-4 mr-2" />
+                Preview
+              </Button>
+              <Button variant="outline">
+                <Share2 className="w-4 h-4 mr-2" />
+                Share
+              </Button>
+              <Button>
+                <Download className="w-4 h-4 mr-2" />
+                Download PDF
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid lg:grid-cols-3 gap-8">
+          {/* Main Content */}
+          <div className="lg:col-span-2">
+            <div className="bg-white rounded-lg shadow-sm border p-6 mb-6">
+              <h2 className="text-xl font-semibold text-gray-900 mb-4">Resume Preview</h2>
+              {template.content}
+            </div>
+            
+            <div className="bg-white rounded-lg shadow-sm border p-6">
+              <h2 className="text-xl font-semibold text-gray-900 mb-4">Template Features</h2>
+              <div className="space-y-4">
+                <div>
+                  <h3 className="font-medium text-gray-900 mb-2">Best For:</h3>
+                  <ul className="space-y-1">
+                    {template.bestFor.map((item, index) => (
+                      <li key={index} className="flex items-start gap-2 text-gray-600">
+                        <span className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <div>
+                  <h3 className="font-medium text-gray-900 mb-2">Pro Tips:</h3>
+                  <ul className="space-y-1">
+                    {template.tips.map((tip, index) => (
+                      <li key={index} className="flex items-start gap-2 text-gray-600">
+                        <span className="w-1.5 h-1.5 bg-green-500 rounded-full mt-2 flex-shrink-0"></span>
+                        {tip}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Sidebar */}
+          <div className="space-y-6">
+            <div className="bg-white rounded-lg shadow-sm border p-6">
+              <h3 className="font-semibold text-gray-900 mb-4">Quick Actions</h3>
+              <div className="space-y-3">
+                <Button className="w-full justify-start" variant="outline">
+                  <Edit className="w-4 h-4 mr-2" />
+                  Customize Template
+                </Button>
+                <Button className="w-full justify-start" variant="outline">
+                  <Printer className="w-4 h-4 mr-2" />
+                  Print Version
+                </Button>
+                <Button className="w-full justify-start" variant="outline">
+                  <Share2 className="w-4 h-4 mr-2" />
+                  Share with Team
+                </Button>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-lg shadow-sm border p-6">
+              <h3 className="font-semibold text-gray-900 mb-4">Related Templates</h3>
+              <div className="space-y-3">
+                {resumeTemplates
+                  .filter(t => t.id !== template.id)
+                  .slice(0, 2)
+                  .map((relatedTemplate) => (
+                    <div 
+                      key={relatedTemplate.id}
+                      className="p-3 border rounded-lg hover:bg-gray-50 cursor-pointer transition-colors"
+                      onClick={() => navigate(`/templates/${relatedTemplate.id}`)}
+                    >
+                      <div className="flex items-center gap-3">
+                        <span className="text-2xl">{relatedTemplate.icon}</span>
+                        <div>
+                          <h4 className="font-medium text-gray-900 text-sm">{relatedTemplate.title}</h4>
+                          <p className="text-xs text-gray-600">{relatedTemplate.experienceLevel}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default TemplatesPage;
+export default ResumeTemplateDetail;
