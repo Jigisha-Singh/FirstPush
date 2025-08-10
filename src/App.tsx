@@ -11,6 +11,7 @@ import LinkedInGuidePage from "./pages/LinkedInGuidePage";
 import PortfolioGuidePage from "./pages/PortfolioGuidePage";
 import ResumeGuidePage from "./pages/ResumeGuidePage";
 import TemplatesPage from "./pages/TemplatesPage";
+import ResumeTemplateDetail from "./pages/ResumeTemplateDetail";
 import ProfilePage from "./pages/ProfilePage";
 import SettingsPage from "./pages/SettingsPage";
 import ComingSoon from './pages/ComingSoon';
@@ -46,6 +47,7 @@ const App = () => (
           <Route path="/guides/portfolio" element={<PortfolioGuidePage />} />
           <Route path="/guides/resume" element={<ResumeGuidePage />} />
           <Route path="/resources/templates" element={<TemplatesPage />} />
+          <Route path="/templates/:templateId" element={<ResumeTemplateDetail />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/settings" element={<SettingsPage />} />
           <Route path="/coming-soon" element={<ComingSoon />} />
