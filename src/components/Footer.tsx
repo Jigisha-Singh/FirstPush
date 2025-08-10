@@ -19,7 +19,8 @@ export const Footer = () => {
   ];
 
   return (
-    <footer className="bg-gray-900 text-gray-300">
+    <footer className="relative bg-gradient-to-br from-gray-900 to-indigo-950 text-gray-300 shadow-2xl pt-12">
+      <div className="section-divider absolute top-0 left-0 w-full" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-4 gap-8">
           {/* Brand */}
@@ -31,18 +32,8 @@ export const Footer = () => {
               Empowering the next generation of developers to take their first step into tech with confidence.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Github className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Twitter className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Linkedin className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Mail className="h-5 w-5" />
-              </a>
+              <a href="https://github.com" className="mr-4 hover:text-white" aria-label="GitHub"><Github className="h-5 w-5" /></a>
+              <a href="mailto:firstpush.delta@gmail.com" className="hover:text-white" aria-label="Email"><Mail className='h-5 w-5' /></a>
             </div>
           </div>
 
@@ -99,20 +90,14 @@ export const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm">
-            © 2024 FirstPush. Made with <Heart className="inline h-4 w-4 text-red-500" /> for aspiring developers.
-          </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
-              Privacy Policy
-            </a>
-            <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
-              Terms of Service
-            </a>
-            <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors">
-              Contact
-            </a>
+        <div className="flex flex-col md:flex-row md:justify-between items-center border-t border-gray-800 pt-10 mt-10">
+          <div className="mb-4 md:mb-0">
+            <span className="text-lg font-bold tracking-wide">© 2025 FirstPush.</span> Empowering your tech journey.
+          </div>
+          <div className="flex space-x-6">
+            <Link to="/privacy-policy" className="hover:underline">Privacy Policy</Link>
+            <Link to="/terms" className="hover:underline">Terms & Conditions</Link>
+            <a href="mailto:firstpush.delta@gmail.com" className="hover:underline" aria-label="Contact Email">Contact</a>
           </div>
         </div>
       </div>

@@ -48,58 +48,55 @@ export const Guides = () => {
   ];
 
   return (
-    <section id="guides" className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 to-blue-50">
+    <section id="guides" className="relative py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-50 to-indigo-50 dark:from-gray-900 dark:to-indigo-950">
+      <div className="section-divider absolute top-0 left-0 w-full" />
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl sm:text-5xl font-extrabold text-gray-900 dark:text-white mb-6">
             Step-by-Step Guides
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             Master the fundamentals with our comprehensive guides. Each one is designed to take you 
             from zero to confident in record time.
           </p>
         </div>
-        
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-12">
           {guides.map((guide, index) => (
             <div
               key={guide.title}
-              className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group"
+              className="bg-white dark:bg-gray-900 rounded-2xl p-10 shadow-xl border border-gray-100 dark:border-gray-800 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 flex flex-col group card"
             >
-              <div className="flex items-start justify-between mb-6">
-                <div className={`p-4 rounded-xl bg-gradient-to-r ${guide.gradient}`}>
+              <div className={`flex items-start justify-between mb-8`}>
+                <div className={`p-4 rounded-xl bg-gradient-to-r ${guide.gradient} shadow-lg`}>
                   <guide.icon className="h-8 w-8 text-white" />
                 </div>
                 <div className="text-right">
-                  <div className="flex items-center text-sm text-gray-500 mb-1">
+                  <div className="flex items-center text-base text-gray-500 mb-1">
                     <Clock className="h-4 w-4 mr-1" />
                     {guide.duration}
                   </div>
-                  <div className="flex items-center text-sm text-gray-500">
+                  <div className="flex items-center text-base text-gray-500">
                     <Star className="h-4 w-4 mr-1" />
                     {guide.difficulty}
                   </div>
                 </div>
               </div>
-              
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">{guide.title}</h3>
-              <p className="text-gray-600 mb-6 leading-relaxed">{guide.description}</p>
-              
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">{guide.title}</h3>
+              <p className="text-lg text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">{guide.description}</p>
               <div className="mb-6">
-                <h4 className="text-sm font-semibold text-gray-900 mb-3">What You'll Learn:</h4>
+                <h4 className="text-sm font-semibold text-gray-900 dark:text-white mb-3">What You'll Learn:</h4>
                 <div className="grid grid-cols-2 gap-2">
                   {guide.topics.map((topic, i) => (
-                    <div key={i} className="text-sm text-gray-600 flex items-center">
+                    <div key={i} className="text-base text-gray-600 dark:text-gray-300 flex items-center">
                       <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mr-2"></div>
                       {topic}
                     </div>
                   ))}
                 </div>
               </div>
-              
               <Link 
                 to={guide.link}
-                className="w-full flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 group-hover:scale-105"
+                className="w-full flex items-center justify-center px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-200 group-hover:scale-105 btn text-lg shadow"
               >
                 Start Guide
                 <ArrowRight className="ml-2 h-5 w-5" />
