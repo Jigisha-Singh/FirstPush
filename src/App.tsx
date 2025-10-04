@@ -15,6 +15,7 @@ import ResumeTemplateDetail from "./pages/ResumeTemplateDetail";
 import ProfilePage from "./pages/ProfilePage";
 import SettingsPage from "./pages/SettingsPage";
 import ComingSoon from './pages/ComingSoon';
+import LandingPage from './pages/LandingPage';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Terms from './pages/Terms';
 import ProgressTracker from './components/ProgressTracker';
@@ -41,7 +42,8 @@ const App = () => (
         <ProgressTracker />
         <FAQBot />
         <Routes>
-          <Route path="/" element={<Index />} />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/home" element={<Index />} />
           <Route path="/guides/github" element={<GitHubGuidePage />} />
           <Route path="/guides/linkedin" element={<LinkedInGuidePage />} />
           <Route path="/guides/portfolio" element={<PortfolioGuidePage />} />
