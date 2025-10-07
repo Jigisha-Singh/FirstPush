@@ -552,11 +552,9 @@ const InteractiveTerminal = () => {
     }
   }, [commandHistory]);
 
-  useEffect(() => {
-    if (inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, []);
+  // Note: We intentionally do not auto-focus the input on mount to avoid
+  // scrolling the page down when this component renders far below the fold.
+  // The input will receive focus naturally when the user clicks into it.
 
   return (
     <div className="bg-gray-900 rounded-lg overflow-hidden border border-gray-700">

@@ -18,7 +18,6 @@ import ComingSoon from './pages/ComingSoon';
 import LandingPage from './pages/LandingPage';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import Terms from './pages/Terms';
-import ProgressTracker from './components/ProgressTracker';
 import FAQBot from './components/FAQBot';
 import React from 'react';
 
@@ -39,7 +38,6 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <ScrollToTop />
-        <ProgressTracker />
         <FAQBot />
         <Routes>
           <Route path="/" element={<LandingPage />} />
